@@ -47,17 +47,10 @@ public class MainActivity extends AppCompatActivity {
         try {
             //create new instance
             SAXParserFactory factory = SAXParserFactory.newInstance();
-
             SAXParser saxParser = factory.newSAXParser();
-
-
             DefaultHandler handler = new DefaultHandler() {
-
                 boolean name = false;
-
                 boolean salary = false;
-
-
                 public void startElement(String uri, String localName,String qName,
                                          Attributes attributes) throws SAXException {
                     if (qName.equalsIgnoreCase("name")) {
@@ -85,7 +78,6 @@ public class MainActivity extends AppCompatActivity {
 
             InputStream is = getAssets().open("file.xml");
             saxParser.parse(is, handler);
-
         } catch (Exception e) {e.printStackTrace();}
     }
 
@@ -112,7 +104,6 @@ public class MainActivity extends AppCompatActivity {
                             + "-----------------------");
                 }
             }//end of for loop
-
         } catch (Exception e) {e.printStackTrace();}
     }
 
@@ -184,8 +175,6 @@ public class MainActivity extends AppCompatActivity {
                             + ", Cost : " + items.get(i).getCost() + "\nDescription : " + items.get(i).getDescription());
                 }
             }
-
-
         } catch (IOException | XmlPullParserException e) {
             e.printStackTrace();
         }
