@@ -1,6 +1,6 @@
 package app.com.xmlparser;
 
-
+// Pojo class for pizza.xml
 class Item {
 
     private int id, cost;

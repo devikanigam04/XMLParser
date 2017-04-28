@@ -36,9 +36,11 @@ public class MainActivity extends AppCompatActivity {
 
         tv = (TextView) findViewById(R.id.textView1);
 
-        parseBySAX();
-        parseByDOM();
-        parseViaXmlPullParser();
+        parseBySAX(); // uses SAX-Parser
+        //or
+        parseByDOM(); // uses DOM-Parser
+        //or
+        parseViaXmlPullParser(); // uses XmlPullParser
     }
 
     void parseBySAX(){
@@ -104,10 +106,10 @@ public class MainActivity extends AppCompatActivity {
                 Node node = nList.item(i);
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
                     Element element2 = (Element) node;
-                    tv.setText(tv.getText()+"\n\n-----------------------");
-                    tv.setText(tv.getText()+"\nName : " + getValue("name", element2)+"\n");
-                    tv.setText(tv.getText()+"Salary : " + getValue("salary", element2)+"\n");
-                    tv.setText(tv.getText()+"-----------------------");
+                    tv.append("\n\n-----------------------"+"\nName : "
+                            + getValue("name", element2)+"\n"+"Salary : "
+                            + getValue("salary", element2)+"\n"
+                            + "-----------------------");
                 }
             }//end of for loop
 
@@ -166,7 +168,9 @@ public class MainActivity extends AppCompatActivity {
                         field = parser.getName();
                         // when </item>
                         if (field.equalsIgnoreCase("item")) {
-                            items.add(item);
+                            if (items != null) {
+                                items.add(item);
+                            }
                             item = new Item(); // resetting pojo
                         }
                         break;
@@ -182,9 +186,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (XmlPullParserException e) {
+        } catch (IOException | XmlPullParserException e) {
             e.printStackTrace();
         }
     }

@@ -1,9 +1,9 @@
 package app.com.xmlparser;
 
+//pojo class for file.xml
 class Country {
 
     private String name, capital, id;
-
 
     String getCapital() {
         return capital;
